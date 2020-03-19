@@ -3,7 +3,7 @@
 #  description: a module to handle db_sqlite database operations
 #  authors:
 #    Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
-#  ]#
+]#
 
 # module imports
 import times
@@ -23,7 +23,7 @@ type
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc newDatabase*(filename = "bloom.db"): Database =
   new result
   result.db = open(filename, "", "", "")
@@ -49,7 +49,7 @@ type
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc post*(database: Database, message: Post) =
   database.db.exec(sql"INSERT INTO Post VALUES (?, ?, ?, ?, ?);", message.title, message.time, message.tags ,message.body, message.image)
 
@@ -61,7 +61,7 @@ proc post*(database: Database, message: Post) =
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc findAllPosts*(database: Database): seq[seq[string]] =
   let posts = database.db.getAllRows(sql"SELECT * FROM Post")
   return posts
@@ -74,7 +74,7 @@ proc findAllPosts*(database: Database): seq[seq[string]] =
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+ ]#
 proc findPost*(database: Database, post: string) : seq[string] =
   let post = database.db.getRow(sql"SELECT * FROM Post WHERE time = ?", post)
   return post
@@ -87,7 +87,7 @@ proc findPost*(database: Database, post: string) : seq[string] =
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc checkPost*(database: Database, post: string) : bool =
   let resPost = database.db.getRow(sql"SELECT * FROM Post WHERE time = ?", post)
   if resPost[0].len == 0:
@@ -107,7 +107,7 @@ proc checkPost*(database: Database, post: string) : bool =
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc close*(database: Database) =
   database.db.close()
 
@@ -119,7 +119,7 @@ proc close*(database: Database) =
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc setup*(database: Database) =
   database.db.exec(sql"DROP TABLE IF EXISTS Post")
   database.db.exec(sql"""CREATE TABLE Post(

@@ -3,7 +3,7 @@
 #  description: the complete server and binder for all the modules :)
 #  authors:
 #    Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
-#  ]#
+]#
 
 # import some cool modules
 import jester, asyncdispatch

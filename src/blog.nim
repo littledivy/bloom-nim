@@ -3,7 +3,7 @@
 #  description: the rendering engine for bloom
 #  authors:
 #    Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
-#  ]#
+]#
 
 # import some epic modules
 import re
@@ -39,7 +39,7 @@ var postStr = """<div class="col-md-4 ftco-animate">
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc renderIndex*(content: string):string =
   var list: string = ""
   var db = open("bloom.db", "", "", "")
@@ -58,7 +58,7 @@ proc renderIndex*(content: string):string =
 #  authors:
 #     Divy Srivastava (@divy-work) <dj.srivastava23@gmail.com>
 #  api: public
-# ]#
+]#
 proc renderBlogPage*(content:string, param:string):string =
   var tagList:string = ""
   var tagXML = "<a href='#' class='tag-cloud-link'>{tag}</a>"
