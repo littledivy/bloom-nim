@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"></html>
+<head>
+	<title>Bloom ClassicEditor Beta</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="https://c.cksource.com/a/1/logos/ckeditor5.png">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	    <link rel="stylesheet" href="css/u_style.css">
+  <style>
+  .is-gradient {
+    text-align:center;
+    border: none;
+		outline:none;
+    background-size: 300% 100%;
+          background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+
+					  moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+ </style>
+</head>
+<body data-editor="ClassicEditor" data-collaboration="false">
+	<div class="centered"><h2 style="color:#E6E6E6">Bloom Classic Editor</h2>
+  <input type="text" class="form-control" placeholder="Title goes here" id="title" />
+<input type="text" class="form-control" placeholder="Tags are seperated by ," id="tags" />
+<input type="file" onchange="readImage(this);" class="form-control" placeholder="Upload file" id="img" />
+<img src="" id="image"/>
+<button class="btn btn-primary" type="button" onclick="upload()">Upload</button>
+  </div>
+	<main>
+		<div class="centered"><br>	
+			<div class="row row-editor">
+				<div class="editor" style="color:black!important">
+					<h2>Untitled</h2>
+					
+			</div></div>
+		</div>
+	</main>
+		<script src="js/jquery.min.js"></script>
+	<script src="js/ckeditor.js"></script>
+	<script>
+ function readImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                console.log(e);
+                document.getElementById("image").src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+ClassicEditor
+			.create( document.querySelector( '.editor' ), {
+				
+				toolbar: {
+					items: [
+						'heading',
+						'|',
+						'bold',
+						'italic',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'|',
+						'indent',
+						'outdent',
+						'|',
+						'imageUpload',
+						'blockQuote',
+						'insertTable',
+						'mediaEmbed',
+						'undo',
+						'redo',
+						'fontFamily',
+						'fontBackgroundColor',
+						'fontColor',
+						'fontSize',
+						'codeBlock',
+						'CKFinder'
+					]
+				},
+				language: 'en-gb',
+				image: {
+					toolbar: [
+						'imageTextAlternative',
+						'imageStyle:full',
+						'imageStyle:side'
+					]
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+				licenseKey: '',
+				
+			} )
+			.then( editor => {
+				window.editor = editor;		
+				
+				
+			} )
+			.catch( error => {
+				console.error( error );
+			} );
+     function upload() {
+			$.ajax({
+				method:"POST",
+				url:"/upload/post",
+				data: {
+					title: $("#title").val(),
+          tags: $("#tags").val().trim(),
+					text:	window.editor.getData(),
+          image: document.getElementById("image").src
+				}
+      }).done(function (resp) { console.log(resp) })
+     }
+	</script>
+</body>
