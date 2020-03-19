@@ -25,6 +25,18 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+    #blog-body * {
+  color:black;
+  padding: 5px;
+  }
+  pre, code {
+    background: black;
+    color:white!important;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  </style>
   </head>
   <body>
 
@@ -56,7 +68,7 @@
             </div>
           </div>
           <div class="row d-flex justify-content-center">
-            <div class="col-md-8">
+            <div class="container-fluid" id="blog-body" style="background-color: white;border-radius: 50px;color:black">
               <h3 class="mb-3">{{body}}</h3>
               <div class="tag-widget post-tag-container mb-5 mt-5">
                 <div class="tagcloud">
