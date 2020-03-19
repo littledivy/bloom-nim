@@ -31,6 +31,14 @@ var postStr = """<div class="col-md-4 ftco-animate">
 	            </div>
 	          </div>"""
 
+proc invert_array(inputArray: seq[string]): seq[string] =
+  var resultArray: seq[string] = @[]
+  resultArray.setLen(3)
+  resultArray[2] = inputArray[0]
+  resultArray[1] = inputArray[1]
+  resultArray[0] = inputArray[2]
+  return resultArray
+
 #[
 #  name: renderIndex
 #  description: serves index page and collects database posts
@@ -52,8 +60,9 @@ proc renderIndex*(content: string):string =
   var ahey = db.getAllRows(sql"SELECT * FROM Post")
   # map every post that we got from the Database
   for hey in ahey:
+    var date = invert_array(hey[1].split(re"T")[0].split(re"-")).join(" ")
     # render the single post component
-    var x = postStr.replace(re"{{title}}",hey[0]).replace(re"{{url}}",hey[1]).replace(re"{{date}}",hey[1].split(re"T")[0]).replace(re"{{image}}",hey[4])
+    var x = postStr.replace(re"{{title}}",hey[0]).replace(re"{{url}}",hey[1]).replace(re"{{date}}",date).replace(re"{{image}}",hey[4])
     # append the single post to the result
     list.add(x)
   # render whole index page with all post data
