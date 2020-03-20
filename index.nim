@@ -17,7 +17,7 @@ var configFile = readFile("configuration.json")
 var config = parseJson(configFile)
 
 settings:
-  port = Port(8080)
+  port = Port(80)
   appName = "/"
 # creates a new Database instance
 var db = newDatabase()
