@@ -3,7 +3,7 @@ version       = "0.2.0"
 author        = "Divy Srivastava"
 description   = "just another blogging engine"
 license       = "GNU"
-srcDir        = "src"
+srcDir        = "./"
 bin           = @["index"]
 
 # Dependencies
