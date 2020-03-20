@@ -16,6 +16,9 @@ import json
 var configFile = readFile("configuration.json")
 var config = parseJson(configFile)
 
+settings:
+  port = Port(80)
+  appName = "/"
 # creates a new Database instance
 var db = newDatabase()
 
